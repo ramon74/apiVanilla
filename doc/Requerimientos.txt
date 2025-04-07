@@ -1,0 +1,48 @@
+Enunciado General
+Crear una API REST en PHP Vanilla para la gestión de tareas de un equipo de desarrollo, con un sistema de prioridad y listas configurables, permitiendo que los desarrolladores tomen, liberen y gestionen tareas dentro de un flujo estructurado.
+
+Estructura de Listas y Movimiento de Tareas
+- Tipos de listas:
+  - Normal → Contiene tareas disponibles para ser tomadas o asignadas.
+  - Especial ("En Desarrollo") → Contiene tareas que han sido tomadas por un desarrollador.
+  - Terminal → Contiene tareas finalizadas, que no pueden ser reasignadas ni tomadas.
+- Reglas de gestión de tareas:
+  - Las tareas de las listas Normales pueden ser tomadas por desarrolladores o asignadas a otras listas.
+  - Al tomar una tarea, esta pasa automáticamente a la lista Especial ("En Desarrollo").
+  - Las tareas de la lista Especial solo pueden ser movidas al ser liberadas por el desarrollador.
+  - Al liberar una tarea, el desarrollador elige la lista destino, con el Front pre-seleccionando la lista de origen.
+  - Las tareas en la lista Terminal no pueden ser tomadas ni reasignadas.
+  - Cada desarrollador solo puede tomar una tarea a la vez, y solo él puede decidir liberarla.
+  - El desarrollador solo puede tomar tareas con la prioridad más alta disponible en la lista. Si hay una tarea de mayor prioridad pendiente, debe ser tomada primero o reasignada antes de que pueda recuperar una tarea anterior.
+
+Persistencia y Seguimiento
+- Los datos se almacenan en una base de datos MySQL.
+- Se mantiene un historial de movimientos que registra:
+  - Fecha y hora del movimiento.
+  - Desarrollador que realizó la acción.
+  - ID de la tarea.
+  - Lista de origen y destino.
+  - Motivo opcional del movimiento.
+
+Operaciones por Entidad
+
+Listas (Registro histórico de estas operaciones)
+- Crear nuevas listas.
+- Editar listas existentes.
+- Eliminar, solo si no tienen tareas asignadas.
+
+Tareas (Registro histórico de estas operaciones)
+- Registrar nuevas tareas.
+- Editar detalles de las tareas.
+- Mover de Lista, asegurando que los cambios sean trazables en el historial.
+
+Desarrollador (Solo se registran la toma y liberación de tareas)
+- Registrar nuevos desarrolladores.
+- Editar su información básica.
+- Habilitar/Inhabilitar para permitir su acceso al sistema.
+- Tomar Tarea, respetando reglas de prioridad.
+- Liberar Tarea, con opción de elegir la lista destino.
+
+Interacción con la API
+- La API se consumirá mediante formularios simples con HTML, CSS y JavaScript.
+- No se requiere autenticación en esta versión inicial.
