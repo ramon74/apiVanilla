@@ -1,0 +1,74 @@
+Alcance y Limitaciones
+
+	Alcance
+		
+		Este proyecto tiene como objetivo la construcción de una API REST en PHP Vanilla para la gestión de tareas de un equipo de desarrollo, asegurando la correcta administración de prioridades y listas configurables.  
+
+		1️ Funcionalidad Principal
+		- Implementar una API REST que permita la gestión de tareas.  
+		- Administrar listas configurables para la organización de tareas.  
+		- Aplicar reglas de prioridad en la toma de tareas.  
+		- Controlar el flujo de movimiento de tareas entre listas.  
+
+		2 Operaciones Implementadas
+		- Gestión de listas: **Crear, Editar, Eliminar** (solo si está vacía).  
+		- Gestión de tareas: **Registrar, Editar, Mover de Lista**.  
+		- Gestión de desarrolladores: **Registrar, Editar, Habilitar/Inhabilitar, Tomar tarea, Liberar tarea**.
+
+		3 Interacción y Usuarios
+		- Permitir que los desarrolladores gestionen tareas mediante un formulario web.  
+		- No se requiere autenticación en esta versión inicial.  
+		- Cada desarrollador solo puede tomar una tarea a la vez.  
+		- Solo el desarrollador puede decidir liberar una tarea.  
+
+		4 Persistencia y Seguimiento
+		- Almacenar las tareas, listas y movimientos en una base de datos MySQL.  
+		- Mantener un historial de movimientos detallado de las tareas.  
+		- No se registra historial de desarrolladores, solo de toma y liberación de tareas.  
+
+		5 Desarrollo y Despliegue
+		- Implementación del backend en PHP Vanilla con API REST.  
+		- Construcción del frontend con HTML, CSS y JavaScript para interacción con la API.  
+		- Interconectar el frontend con el backend mediante **XmlHttpRequest**.  
+		- Control de versiones con Git/GitLab.
+		- **Ambiente de Desarrollo:** Se ejecutará localmente con configuraciones estándar.  
+		- **Ambiente de Pruebas/Despliegue:** Servirá como entorno final y se alojará en AWS.  
+
+
+	Limitaciones
+
+		1️ **Autenticación y Roles de Usuario**  
+		- En esta versión, no se implementará autenticación ni gestión de roles.  
+		- Solo los desarrolladores podrán gestionar tareas, sin diferenciación de permisos.  
+
+		2️ **Restricciones en las Listas**  
+		- Una tarea solo puede pasar a la lista especial **En Desarrollo** cuando es tomada por un desarrollador.  
+		- Una tarea solo puede salir de **En Desarrollo** al ser liberada por el mismo desarrollador.  
+		- Al liberar una tarea, solo se podrá asignar a listas de tipo **Normal**, no directamente a una lista **Terminal**.  
+		- Para mover una tarea a una lista **Terminal**, primero debe pasar por una lista **Normal**.  
+		- Se mostrará una advertencia al mover una tarea a una lista **Terminal**, indicando que el cambio no podrá revertirse.  
+
+		3️ **Manejo de Errores y Seguridad**  
+		- Se implementará captura de excepciones para errores comunes.  
+		- Los errores se registrarán en un **log simple en el servidor**, almacenando fecha, tipo de error y mensaje asociado.  
+		- No se incluirá un sistema avanzado de monitoreo de errores.  
+		- No se aplicarán medidas de seguridad avanzadas como protección contra SQL Injection o ataques XSS.  
+
+		4️ **Escalabilidad y Rendimiento**  
+		- No se optimizará el rendimiento de consultas en MySQL para grandes volúmenes de datos.  
+		- No se incluirán estrategias de caching o balanceo de carga.  
+
+		5️ **Toma y Liberación de Tareas**  
+		- No se permitirá que los desarrolladores **reserven** tareas sin tomarlas. Todas las tareas deben ser tomadas inmediatamente para pasar a **En Desarrollo**.  
+		- No se manejarán **notificaciones en tiempo real** ni alertas automáticas sobre cambios en el estado de una tarea.  
+		- Si un desarrollador intenta tomar una tarea que ya fue tomada por otro, **la API rechazará la operación** con un mensaje de error, pero no enviará alertas en segundo plano.  
+		- Los desarrolladores deben identificarse con su **correo electrónico** para tomar tareas o gestionar listas/tareas.  
+		- Si el correo **no está registrado o el desarrollador está inhabilitado**, **no podrá realizar ninguna acción** en la API.  
+
+		6️ **Interfaz de Usuario**  
+		- Solo se utilizará una página web con HTML, CSS y JavaScript.  
+		- La comunicación entre Front y Back se hará con **XmlHttpRequest**, sin utilizar Fetch API ni WebSockets.  
+
+		7️ **Histórico de Desarrolladores**  
+		- Solo se registrarán históricos de movimientos y creaciones de tareas y listas de tareas.  
+		- No se almacenará información sobre quién visualizó o revisó tareas en el sistema.

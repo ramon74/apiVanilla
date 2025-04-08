@@ -1,0 +1,18 @@
+Objetivos
+	Objetivo General:
+		Crear una API REST en PHP Vanilla para la gestión de tareas de un equipo de desarrollo, con un sistema de prioridad y listas configurables, permitiendo que los desarrolladores tomen, liberen y gestionen tareas dentro de un flujo estructurado.
+
+	Objetivos Específicos:
+		- Elaborar la documentación del proyecto, que permita hacer seguimiento del mismo y replicar el proceso de desarrollo de forma consistente
+		- Generar un entorno de desarrollo adecuado para la construcción del proyecto
+		- Aplicar control de versiones del proyecto por medio de git/gitlab
+		- Establecer las reglas de negocio que rijan los procesos del proyecto.
+		- Diseñar el modelo de datos que sostenga laa información que sea procesada por el proyecto.
+		- Implementar el modelo de datos en un esquema de MySQL.
+		- Definir los end-point que sirvan como interface para las solicitudes relacionadas con las listas de tareas, tareas y desarrolladores que son gestionados por el proyecto.
+		- Definir las operaciones asociadas con listas de tareas, tareas y desarrolladores que son gestionados por el proyecto.
+		- Implementar las operaciones definidas en cada end-point correspondiente en PHP Vanilla por medio de API/REST.
+		- Construir una interface de usuario para que los desarrolladores puedan gestionar las tareas del equipo de desarrollo, basado en una sola pagina web HTML con un DOM dinámico manejado con JavaScript/CSS.
+		- Interconectar el Front, basado en formularios HTML/JavaScript/CSS, con el Back, desarrollado en PHP Vanilla, por medio de XmlHttpRequest.
+		- Establecer modelo de pruebas para el Front, el Back y el Modelo de datos
+		- Construir un entorno de despliegue para el proyecto en AWS.		

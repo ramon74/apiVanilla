@@ -10,11 +10,16 @@ Estructura de Listas y Movimiento de Tareas
   - Las tareas de las listas Normales pueden ser tomadas por desarrolladores o asignadas a otras listas.
   - Al tomar una tarea, esta pasa automáticamente a la lista Especial ("En Desarrollo").
   - Las tareas de la lista Especial solo pueden ser movidas al ser liberadas por el desarrollador.
-  - Al liberar una tarea, el desarrollador elige la lista destino, con el Front pre-seleccionando la lista de origen.
-  - Las tareas en la lista Terminal no pueden ser tomadas ni reasignadas.
+  - Al liberar una tarea, el desarrollador elige la lista destino, con el Front pre-seleccionando la lista de origen, solo se podrán liberar a listas de tipo Normal.
+  - Las tareas en la lista Terminal no pueden ser tomadas ni reasignadas, por lo que al mover una tarea a este tipo de lista, se debe mostrar una advertencia sobre este hecho.
   - Cada desarrollador solo puede tomar una tarea a la vez, y solo él puede decidir liberarla.
   - El desarrollador solo puede tomar tareas con la prioridad más alta disponible en la lista. Si hay una tarea de mayor prioridad pendiente, debe ser tomada primero o reasignada antes de que pueda recuperar una tarea anterior.
-
+- Manejo de Desarrolladores
+  - Los desarrolladores deben ser registrados por otro desarrollador registrado previamente, debe existir un desarrollador por defecto creado directamente en base de datos para la creación de los demas desarrolladores
+  - Para que un usuario tome o gestione una tarea, debe identificarse por medio de un email válido y debe estar habilitado.
+  - Los desarrolladores deben poder administrar sus datos.
+  - Un desarrollador puede ser inhabilitado por otro desarrollador mas antiguo.
+  
 Persistencia y Seguimiento
 - Los datos se almacenan en una base de datos MySQL.
 - Se mantiene un historial de movimientos que registra:

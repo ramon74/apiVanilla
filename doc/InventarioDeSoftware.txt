@@ -1,0 +1,25 @@
+Inventario de Software para entorno de desarrollo
+	Servidor HTTP
+		Apache/2.4.48 (Win64) 
+		#***********************************************
+		# Soporte para PHP 8.4 como Módulo SAPI #
+		##
+		LoadModule php_module "c:/php/php8apache2_4.dll"
+		AddType application/x-httpd-php  .php
+		# Configurar la ruta para el php.ini
+		PHPIniDir "C:/php"
+		LoadFile "c:/php/nghttp2.dll"
+		#***********************************************
+	Motor de base de datos
+		MySQL 8.0.20 for Win64 on x86_64 (MySQL Community Server - GPL) 
+	Interprete de Script del lado servidor
+		PHP 8.4.5  - Zend Engine v4.4.5 (ZTS Visual C++ 2022 x64)
+			Extensiones activias
+				-cURL
+				-MySQL
+				-openssl
+	Control de Versiones Local
+		git version 2.47.1.windows 
+	IDE
+		VS Code 1.98.2
+		
