@@ -31,9 +31,15 @@ CREATE TABLE `desaarrollador` (
   `correo` varchar(100) NOT NULL,
   `idEspecialidad` int DEFAULT '1',
   `idStatus` int NOT NULL DEFAULT '1',
+  `feCre` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `feMod` datetime NOT NULL,
+  `feStat` datetime NOT NULL,
+  `idCreador` int DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `fk_desarrollador_status_idx` (`idStatus`),
   KEY `fk_desarrollador_especialidad_idx` (`idEspecialidad`),
+  KEY `fk_desarrollador_creador_idx` (`idCreador`),
+  CONSTRAINT `fk_desarrollador_creador` FOREIGN KEY (`idCreador`) REFERENCES `desaarrollador` (`id`),
   CONSTRAINT `fk_desarrollador_especialidad` FOREIGN KEY (`idEspecialidad`) REFERENCES `especialidad` (`id`),
   CONSTRAINT `fk_desarrollador_status` FOREIGN KEY (`idStatus`) REFERENCES `status` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
@@ -86,6 +92,8 @@ CREATE TABLE `lista` (
   `detalle` varchar(500) DEFAULT NULL,
   `idTipoLista` int NOT NULL,
   `idDesarrollador` int NOT NULL,
+  `feCre` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `feMod` datetime DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`),
   KEY `fk_lista_tipoLista_idx` (`idTipoLista`),
   KEY `fk_lista_desarrollador_idx` (`idDesarrollador`),
@@ -114,11 +122,11 @@ CREATE TABLE `movimientos` (
   `id` int NOT NULL AUTO_INCREMENT,
   `idDesarrollador` int NOT NULL,
   `idTarea` int NOT NULL,
-  `inicio` datetime NOT NULL,
-  `fin` datetime DEFAULT NULL,
+  `mensajeDesarrollador` varchar(500) DEFAULT NULL,
+  `inicio` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `fin` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `listaOrigen` int NOT NULL,
   `listaDestino` int DEFAULT NULL,
-  `mensajeDesarrollador` varchar(45) DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `fk_movimientos_desarrollador_idx` (`idDesarrollador`),
   KEY `fk_movimientos_listaOrigen_idx` (`listaOrigen`),
@@ -222,4 +230,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2025-04-14 14:20:34
+-- Dump completed on 2025-04-14 18:34:20
